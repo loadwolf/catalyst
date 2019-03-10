@@ -4,6 +4,7 @@
 ## Question
 ## Do the emails that have extra spaces at end need to be cleansed or fail? (Front end validation issue) (currently cleansed)
 ## If the emails have ' in the name do they need  to be removed or replaced? (currently removed)
+## What is the desired output for failed emails? csv || display onscreen || txt file? (currently none)
 
 There may be some libraries that need to be installed via apt-get, pear or
 composer. This is fine but these dependencies should be outlined in provided
