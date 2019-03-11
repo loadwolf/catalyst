@@ -19,17 +19,17 @@ if($options['file'] != ''){
 
 	if($options['username'] == '' || $options['password'] == '' ){
 		notes("Please check the -u  username and -p password for mysql database");
-
+	}elseif(create_datbase($options['hostname'], $options['username'], $options['password'], 'catalyst') == 'fail'){
+		notes("Could not create/access the Database  - Please check Mysql connection options -------------------------------------------------------");
+	}elseif(create_table($options['hostname'], $options['username'], $options['password'], 'catalyst') == 'fail'){
+		notes("Could not create/access the table  - Please check Mysql connection options -------------------------------------------------------");
 	}else{
-
-		if(create_datbase($options['hostname'], $options['username'], $options['password'], 'cayalyst') == 'fail'){
-			notes("Could not create/access the Database  - Please check Mysql connection options ");
-		}else{
-			main($data,$options);
-		}
+		main($data,$options);
 	}
+	
 
 }else{
+	//Check error messages - clarification needed 
 		notes("No csv file specified"); 
 		notes("Please add the option    --file nameofcsv.csv   from the CLI command line to enable");
 }

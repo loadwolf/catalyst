@@ -12,9 +12,7 @@ function validate_email($email)
 	  }else{
 		$email = filter_var($email, FILTER_VALIDATE_EMAIL);
 		}
-		if($email == null){
-			notes( "\n		||		The following email could not be processed ".$email);
-		}
+		
 		//return email blank and stop processing
 		
 	 return $email;

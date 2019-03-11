@@ -8,12 +8,19 @@ function notes($notes)
 {
 	echo "\n		|| ".$notes;
 }
-	
+
+function warning($notes)
+{
+	notes("ATTENTION NEEDED ");
+	notes('      >>> '.$notes);
+	notes('');
+}
+
 	
 function get_options($argv,$argc){
 	echo "
 		||=====================================================================================================
-		|| PROGRAM NOES
+		|| PROGRAM NOTES
 		||=====================================================================================================";
 	for($i = 0; $i < $argc; $i++){
 	
