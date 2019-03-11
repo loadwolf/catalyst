@@ -1,78 +1,125 @@
+#!/usr/bin/php
 <?php
-    var_dump($argc); //number of arguments passed 
-    var_dump($argv); //the arguments passed
-?>
+    //var_dump($argc); //number of arguments passed 
+    //var_dump($argv); //the arguments passed
+	
+	//var_dump($argv);
 
+	
+	
+function get_options($argv,$argc){
+	for($i = 0; $i < $argc; $i++){
+	
+	
+		switch ($argv[$i]) {
+			case '--file':
+				# code...
+			   // echo "--file = TRUE";
+				$options['file'] = $argv[$i+1];
+				break;
+			case '--create_table':
+				# code...
+			   // echo "--create_table = ".$argv[$i+1];
+				$options['create_table'] = 'y';
+				break;
+			case '--dry_run':
+				# code...
+			   // echo "--dry_run = TRUE";
+			   $options['dry_run'] = 'y';
+				break;
+			case '-u':
+				# code...
+			   // echo "-u = ".$argv[$i+1];
+			   $options['user']= $argv[$i+1];
+				break;
+			case '-p':
+				# code...
+				//echo "-p = ".$argv[$i+1];
+				$options['password']= $argv[$i+1];
+				break;
+			case '-h':
+				# code...
+				//echo "-h = ".$argv[$i+1];
+				$options['hostname'] = $argv[$i+1];
+				break;    
+			case '--help' :
+				# code...
+				echo "			
+				/*=========================================================================================
+				|| HELP
+				||=========================================================================================  
+				||
+				|| --file [csv file name] 	– this is the name of the CSV to be parsed
+				|| --create_table 		– this will cause the MySQL users table to be built (and no further
+				|| 				action will be taken)
+				|| --dry_run 			– this will be used with the --file directive in the instance that we want
+				||				to run the script but not insert into the DB. All other functions will be 
+				||				executed, but the database won't be altered.
+				||	
+				|| -u – MySQL username
+				|| -p – MySQL password
+				|| -h – MySQL host
+				||
+				|| --help 			– which will output the above list of directives with details.
+				||
+				||  eg C:\>    php test.php --file test.csv --create_table users --dry_run -u root -p  -h localhost
+				*/
 
---file [csv file name] – this is the name of the CSV to be parsed
-• --create_table – this will cause the MySQL users table to be built (and no further
-• action will be taken)
-• --dry_run – this will be used with the --file directive in the instance that we want
-to run the script but not insert into the DB. All other functions will be executed,
-but the database won't be altered.
-• -u – MySQL username
-• -p – MySQL password
-• -h – MySQL host
-• --help – which will output the above list of directives with details.
+				";
+				break;            
+				
+				
+			default:
+				# code...
+				break;
+		}
+		
+	}
+	
+	if(!isset($options['file'])) {
 
-<?php
-$data = [];
-for($i = 0; $i < $argc; $i++){
-    //var_dump($argv);
-    
-    switch ($argv[$i]) {
-        case '--file':
-            # code...
-            echo "--dry_run = TRUE";
-            array_push($data['file'],$data['file'] = $argv[$i+1]);
-            break;
-        case '--create_table':
-            # code...
-            echo "--create_table = ".$argv[$i+1];
-            array_push($data['table'],$data['table'] = $argv[$i+1]);
-            break;
-        case '--dry_run':
-            # code...
-            echo "--dry_run = TRUE";
-            array_push($$data['dry_run'],$data['dry_run'] = true);
-            break;
-        case '-u':
-            # code...
-            echo "-u = ".$argv[$i+1];
-            array_push($data['username'],$data['username']= $argv[$i+1]);
-            break;
-        case '-p':
-            # code...
-            echo "-u = ".$argv[$i+1];
-            array_push($data['username'],$data['username']= $argv[$i+1]);
-            break;
-        case '-h':
-            # code...
-            echo "-h = ".$argv[$i+1];
-            array_push($data['hostname'],$data['hostname'] = $argv[$i+1]);
-            break;    
-        case '--help':
-            # code...
-            echo "
-            --file [csv file name] – this is the name of the CSV to be parsed
-            • --create_table – this will cause the MySQL users table to be built (and no further
-            • action will be taken)
-            • --dry_run – this will be used with the --file directive in the instance that we want
-            to run the script but not insert into the DB. All other functions will be executed,
-            but the database won't be altered.
-            • -u – MySQL username
-            • -p – MySQL password
-            • -h – MySQL host
-            • --help – which will output the above list of directives with details.
-            ";
-            break;            
-            
-            
-        default:
-            # code...
-            break;
-    }
-    
+		$options['file'] = '';
+	}else{
+		//echo($options['file']);
+	}
+	
+
+	if(!isset($options['create_table'])) {
+		 $options['create_table'] = '';
+	}else{
+		//echo($options['create_table']);
+	}
+
+	if(!isset($options['dry_run'])) {
+		 $options['dry_run'] = '';
+	}else{
+		//echo($options['dry_run']);
+	}
+	if(!isset($options['user'])) {
+		 $options['user'] = '';
+	}else{
+		//echo($options['user']);
+	}
+
+	if(!isset($options['password'])) {
+		 $options['password'] = '';
+	}else{
+		//echo($options['password']);
+	}
+
+	if(!isset($options['hostname'])) {
+		 $options['hostname'] = '';
+	}else{
+		//echo($options['hostname']);
+	}
+	
+	return($options);
+	
+	
 }
 
-print_r($data);
+$options = get_options($argv,$argc);
+
+
+
+
